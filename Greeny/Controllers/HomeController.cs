@@ -20,7 +20,7 @@ namespace Greeny.Controllers
 
             HomeVM model = new()
             {
-                Sliders = sliders
+                Sliders = sliders.Where(m => m.Status).ToList()
             };
 
             return View(model);

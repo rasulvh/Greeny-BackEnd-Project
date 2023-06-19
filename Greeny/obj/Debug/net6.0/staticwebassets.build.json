@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "BXBFLrTuVVfKa3bWBJG36GzpMpGrDU4//BXdgnTzi1o=",
+  "Hash": "ibT1pj3KtzX1GaFHxhB9Pg2N81glSUEhZ7OVuYZ1V+Y=",
   "Source": "Greeny",
   "BasePath": "_content/Greeny",
   "Mode": "Default",
@@ -3330,6 +3330,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\js\\venobox.js"
+    },
+    {
+      "Identity": "D:\\Masadakılar Rasul\\Code Academy\\Ev tapşırığı\\Lahiyeler\\Greeny\\Greeny\\wwwroot\\templates\\account.html",
+      "SourceId": "Greeny",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Masadakılar Rasul\\Code Academy\\Ev tapşırığı\\Lahiyeler\\Greeny\\Greeny\\wwwroot\\",
+      "BasePath": "_content/Greeny",
+      "RelativePath": "templates/account.html",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\templates\\account.html"
     },
     {
       "Identity": "D:\\Masadakılar Rasul\\Code Academy\\Ev tapşırığı\\Lahiyeler\\Greeny\\Greeny\\wwwroot\\vendor\\bootstrap\\bootstrap.min.css",

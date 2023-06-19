@@ -16,6 +16,30 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = D:\Masadakılar Rasul\Code Academy\Ev tapşırığı\Lahiyeler\Greeny\Greeny
 build_property._RazorSourceGeneratorDebug = 
 
+[D:/Masadakılar Rasul/Code Academy/Ev tapşırığı/Lahiyeler/Greeny/Greeny/Views/Account/ForgotPassword.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxGb3Jnb3RQYXNzd29yZC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Masadakılar Rasul/Code Academy/Ev tapşırığı/Lahiyeler/Greeny/Greeny/Views/Account/Login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxMb2dpbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Masadakılar Rasul/Code Academy/Ev tapşırığı/Lahiyeler/Greeny/Greeny/Views/Account/Profile.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxQcm9maWxlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Masadakılar Rasul/Code Academy/Ev tapşırığı/Lahiyeler/Greeny/Greeny/Views/Account/Register.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxSZWdpc3Rlci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Masadakılar Rasul/Code Academy/Ev tapşırığı/Lahiyeler/Greeny/Greeny/Views/Account/ResetPassword.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxSZXNldFBhc3N3b3JkLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Masadakılar Rasul/Code Academy/Ev tapşırığı/Lahiyeler/Greeny/Greeny/Views/Account/VerifyEmail.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxWZXJpZnlFbWFpbC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/Masadakılar Rasul/Code Academy/Ev tapşırığı/Lahiyeler/Greeny/Greeny/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 

@@ -20,13 +20,13 @@ namespace ServiceLayer.Services
 
         public async Task<List<SliderVM>> GetAllAsync()
         {
-            var datas = await _sliderRepository.FindAllAsync();
+            var datas = await _sliderRepository.FindAllAsync(m => !m.SoftDelete);
 
             List<SliderVM> model = new List<SliderVM>();
 
             foreach (var data in datas)
             {
-                model.Add(new SliderVM { Image = data.Image, Title = data.Title, Description = data.Description });
+                model.Add(new SliderVM { Image = data.Image, Title = data.Title, Description = data.Description, Status = data.Status });
             }
 
             return model;

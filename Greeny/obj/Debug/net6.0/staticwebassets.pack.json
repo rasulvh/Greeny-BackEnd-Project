@@ -777,6 +777,10 @@
       "PackagePath": "staticwebassets\\js\\venobox.js"
     },
     {
+      "Id": "D:\\Masadakılar Rasul\\Code Academy\\Ev tapşırığı\\Lahiyeler\\Greeny\\Greeny\\wwwroot\\templates\\account.html",
+      "PackagePath": "staticwebassets\\templates\\account.html"
+    },
+    {
       "Id": "D:\\Masadakılar Rasul\\Code Academy\\Ev tapşırığı\\Lahiyeler\\Greeny\\Greeny\\wwwroot\\vendor\\bootstrap\\bootstrap.min.css",
       "PackagePath": "staticwebassets\\vendor\\bootstrap\\bootstrap.min.css"
     },
