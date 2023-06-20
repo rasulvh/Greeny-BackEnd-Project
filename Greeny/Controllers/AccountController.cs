@@ -4,22 +4,17 @@ using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 using ServiceLayer.Services.Interfaces;
 using ServiceLayer.ViewModels.Account;
+using ServiceLayer.Helpers;
 
 namespace Greeny.Controllers
 {
     public class AccountController : Controller
     {
-        private readonly UserManager<AppUser> _userManager;
-        private readonly SignInManager<AppUser> _signInManager;
-        private readonly IEmailService _emailService;
+        private readonly IAccountService _accountService;
 
-        public AccountController(UserManager<AppUser> userManager,
-                                 SignInManager<AppUser> signInManager,
-                                 IEmailService emailService)
+        public AccountController(IAccountService accountService)
         {
-            _userManager = userManager;
-            _signInManager = signInManager;
-            _emailService = emailService;
+            _accountService = accountService;
         }
 
         [HttpGet]
@@ -37,12 +32,7 @@ namespace Greeny.Controllers
                 return View(request);
             }
 
-            AppUser user = await _userManager.FindByEmailAsync(request.EmailOrUsername);
-
-            if (user == null)
-            {
-                user = await _userManager.FindByNameAsync(request.EmailOrUsername);
-            }
+            AppUser user = await _accountService.GetUserByUsernameOrEmail(request.EmailOrUsername);
 
             if (user == null)
             {
@@ -50,7 +40,7 @@ namespace Greeny.Controllers
                 return View(request);
             }
 
-            PasswordVerificationResult comparePassword = _userManager.PasswordHasher.VerifyHashedPassword(user, user.PasswordHash, request.Password);
+            PasswordVerificationResult comparePassword = _accountService.ComparePassword(user, request.Password);
 
             if (comparePassword.ToString() == "Failed")
             {
@@ -58,7 +48,7 @@ namespace Greeny.Controllers
                 return View(request);
             }
 
-            var result = await _signInManager.PasswordSignInAsync(user, request.Password, false, false);
+            var result = await _accountService.SignInAsync(user, request.Password);
 
             if (result.IsNotAllowed)
             {
@@ -84,14 +74,7 @@ namespace Greeny.Controllers
                 return View(request);
             }
 
-            AppUser user = new()
-            {
-                UserName = request.Username,
-                Fullname = request.Fullname,
-                Email = request.Email,
-            };
-
-            var result = await _userManager.CreateAsync(user, request.Password);
+            var result = await _accountService.CreateUser(request);
 
             if (!result.Succeeded)
             {
@@ -102,39 +85,19 @@ namespace Greeny.Controllers
                 return View(request);
             }
 
-            string token = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+            AppUser user = await _accountService.GetUserByUsernameOrEmail(request.Username);
+
+            await _accountService.AddRoleToUserAsync(user, Roles.Member.ToString());
+
+            string token = await _accountService.GenerateEmailConfirmationTokenAsync(user);
 
             string link = Url.Action(nameof(ConfirmEmail), "Account", new { userId = user.Id, token }, Request.Scheme);
 
-            string html = string.Empty;
-
-            using (StreamReader reader = new("wwwroot/templates/account.html"))
-            {
-                html = reader.ReadToEnd();
-            }
-
-            html = html.Replace("{{link}}", link);
-
-            html = html.Replace("{{fullName}}", user.Fullname);
-
             string subject = "Email confirmation";
 
-            _emailService.SendEmail(request.Email, subject, html);
+            _accountService.SendConfirmationEmail(user, request.Email, subject, link);
 
             return RedirectToAction(nameof(VerifyEmail));
-        }
-
-        public async Task<IActionResult> ConfirmEmail(string userId, string token)
-        {
-            if (userId == null || token == null) return BadRequest();
-
-            AppUser user = await _userManager.FindByIdAsync(userId);
-
-            await _userManager.ConfirmEmailAsync(user, token);
-
-            await _signInManager.SignInAsync(user, false);
-
-            return RedirectToAction("Index", "Home");
         }
 
         public IActionResult VerifyEmail()
@@ -142,24 +105,36 @@ namespace Greeny.Controllers
             return View();
         }
 
+        public async Task<IActionResult> ConfirmEmail(string userId, string token)
+        {
+            if (userId == null || token == null) return BadRequest();
+
+            await _accountService.ConfirmEmail(userId, token);
+
+            return RedirectToAction("Index", "Home");
+        }
+
         public async Task<IActionResult> Profile()
         {
             var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
 
-            var user = await _userManager.FindByIdAsync(userId);
+            var user = await _accountService.GetUserById(userId);
 
             if (user == null) return NotFound();
 
-            ViewBag.fullName = user.Fullname;
-            ViewBag.email = user.Email;
+            ProfileVM model = new()
+            {
+                Fullname = user.Fullname,
+                Email = user.Email
+            };
 
-            return View();
+            return View(model);
         }
 
         [HttpGet]
         public async Task<IActionResult> Logout()
         {
-            await _signInManager.SignOutAsync();
+            await _accountService.LogoutAsync();
             return RedirectToAction("Index", "Home");
         }
 
@@ -178,7 +153,7 @@ namespace Greeny.Controllers
                 return View();
             }
 
-            AppUser user = await _userManager.FindByEmailAsync(request.Email);
+            AppUser user = await _accountService.GetUserByUsernameOrEmail(request.Email);
 
             if (user is null)
             {
@@ -186,24 +161,13 @@ namespace Greeny.Controllers
                 return View();
             }
 
-            string token = await _userManager.GeneratePasswordResetTokenAsync(user);
+            string token = await _accountService.GeneratePasswordResetTokenAsync(user);
 
             string link = Url.Action(nameof(ResetPassword), "Account", new { userId = user.Id, token }, Request.Scheme);
 
-            string html = string.Empty;
-
-            using (StreamReader reader = new("wwwroot/templates/account.html"))
-            {
-                html = reader.ReadToEnd();
-            }
-
-            html = html.Replace("{{link}}", link);
-
-            html = html.Replace("{{fullName}}", user.Fullname);
-
             string subject = "Reset password";
 
-            _emailService.SendEmail(request.Email, subject, html);
+            _accountService.SendConfirmationEmail(user, request.Email, subject, link);
 
             return RedirectToAction(nameof(VerifyEmail));
         }
@@ -229,19 +193,32 @@ namespace Greeny.Controllers
                 return View(request);
             }
 
-            AppUser user = await _userManager.FindByIdAsync(request.UserId);
+            AppUser user = await _accountService.GetUserById(request.UserId);
 
             if (user is null) return NotFound();
 
-            if (await _userManager.CheckPasswordAsync(user, request.Password))
+            if (await _accountService.CheckPasswordAsync(user, request.Password))
             {
                 ModelState.AddModelError("RepeatPassword", "You cannot use your current password");
                 return View(request);
             }
 
-            await _userManager.ResetPasswordAsync(user, request.Token, request.Password);
+            await _accountService.ResetPasswordAsync(user, request.Token, request.Password);
 
             return RedirectToAction(nameof(Login));
+        }
+
+        public async Task<IActionResult> CreateRoles()
+        {
+            foreach (var role in Enum.GetValues(typeof(Roles)))
+            {
+                if (!await _accountService.CheckRoleExistAsync(role.ToString()))
+                {
+                    await _accountService.CreateRoleAsync(role.ToString());
+                }
+            }
+
+            return Ok();
         }
     }
 }

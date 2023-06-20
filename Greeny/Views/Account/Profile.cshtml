@@ -1,4 +1,4 @@
-﻿
+﻿@model ProfileVM
 @{
     ViewData["Title"] = "Profile";
 }
@@ -33,12 +33,12 @@
                             </div>
                             <div class="col-md-6 col-lg-4">
                                 <div class="form-group">
-                                    <label class="form-label">full name</label><input class="form-control" type="text" value="@ViewBag.fullName">
+                                    <label class="form-label">full name</label><input class="form-control" type="text" value="@Model.Fullname">
                                 </div>
                             </div>
                             <div class="col-md-6 col-lg-4">
                                 <div class="form-group">
-                                    <label class="form-label">email</label><input class="form-control" type="email" value="@ViewBag.email">
+                                    <label class="form-label">email</label><input class="form-control" type="email" value="@Model.Email">
                                 </div>
                             </div>
                             <div class="col-lg-2">
