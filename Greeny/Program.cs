@@ -35,13 +35,23 @@ builder.Services.Configure<IdentityOptions>(opt =>
     opt.Lockout.AllowedForNewUsers = true;
 });
 
+
+//Repositories
 builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 builder.Services.AddScoped<ILayoutService, LayoutService>();
 builder.Services.AddScoped<ISettingRepository, SettingRepository>();
 builder.Services.AddScoped<ISliderRepository, SliderRepository>();
+builder.Services.AddScoped<IProductRepository, ProductRepository>();
+builder.Services.AddScoped<IBasketRepository, BasketRepository>();
+builder.Services.AddScoped<IWishlistRepository, WishlistRepository>();
+
+//Services
 builder.Services.AddScoped<ISliderService, SliderService>();
 builder.Services.AddScoped<IEmailService, EmailService>();
 builder.Services.AddScoped<IAccountService, AccountService>();
+builder.Services.AddScoped<IProductService, ProductService>();
+builder.Services.AddScoped<IBasketService, BasketService>();
+builder.Services.AddScoped<IWishlistService, WishlistService>();
 
 var app = builder.Build();
 

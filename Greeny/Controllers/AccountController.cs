@@ -11,10 +11,16 @@ namespace Greeny.Controllers
     public class AccountController : Controller
     {
         private readonly IAccountService _accountService;
+        private readonly IBasketService _basketService;
+        private readonly IWishlistService _wishlistService;
 
-        public AccountController(IAccountService accountService)
+        public AccountController(IAccountService accountService,
+                                 IBasketService basketService,
+                                 IWishlistService wishlistService)
         {
             _accountService = accountService;
+            _basketService = basketService;
+            _wishlistService = wishlistService;
         }
 
         [HttpGet]
@@ -88,6 +94,10 @@ namespace Greeny.Controllers
             AppUser user = await _accountService.GetUserByUsernameOrEmail(request.Username);
 
             await _accountService.AddRoleToUserAsync(user, Roles.Member.ToString());
+
+            await _basketService.CreateAsync(user);
+
+            await _wishlistService.CreateAsync(user);
 
             string token = await _accountService.GenerateEmailConfirmationTokenAsync(user);
 

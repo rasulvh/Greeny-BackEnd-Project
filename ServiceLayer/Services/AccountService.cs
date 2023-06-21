@@ -1,6 +1,7 @@
 ﻿using DomainLayer.Models;
 using Microsoft.AspNetCore.Identity;
 using Org.BouncyCastle.Asn1.Ocsp;
+using RepositoryLayer.Repositories.Interfaces;
 using ServiceLayer.Services.Interfaces;
 using ServiceLayer.ViewModels.Account;
 
@@ -12,16 +13,19 @@ namespace ServiceLayer.Services
         private readonly SignInManager<AppUser> _signInManager;
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly IEmailService _emailService;
+        private readonly IBasketRepository _basketRepository;
 
         public AccountService(UserManager<AppUser> userManager,
                               IEmailService emailService,
                               SignInManager<AppUser> signInManager,
-                              RoleManager<IdentityRole> roleManager)
+                              RoleManager<IdentityRole> roleManager,
+                              IBasketRepository basketRepository)
         {
             _userManager = userManager;
             _emailService = emailService;
             _signInManager = signInManager;
             _roleManager = roleManager;
+            _basketRepository = basketRepository;
         }
 
         public async Task AddRoleToUserAsync(AppUser user, string role)

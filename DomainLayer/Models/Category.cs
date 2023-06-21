@@ -11,6 +11,7 @@ namespace DomainLayer.Models
     {
         public string Name { get; set; }
         public string Image { get; set; }
-
+        public ICollection<SubCategory> SubCategories { get; set; }
+        public ICollection<Product> Products { get; set; }
     }
 }
