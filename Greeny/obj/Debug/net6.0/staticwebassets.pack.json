@@ -29,6 +29,10 @@
       "PackagePath": "staticwebassets\\admin\\js\\main.js"
     },
     {
+      "Id": "D:\\Masadakılar Rasul\\Code Academy\\Ev tapşırığı\\Lahiyeler\\Greeny\\Greeny\\wwwroot\\admin\\js\\product.js",
+      "PackagePath": "staticwebassets\\admin\\js\\product.js"
+    },
+    {
       "Id": "D:\\Masadakılar Rasul\\Code Academy\\Ev tapşırığı\\Lahiyeler\\Greeny\\Greeny\\wwwroot\\admin\\lib\\chart\\chart.min.js",
       "PackagePath": "staticwebassets\\admin\\lib\\chart\\chart.min.js"
     },
@@ -1065,8 +1069,40 @@
       "PackagePath": "staticwebassets\\images\\product\\19.jpg"
     },
     {
+      "Id": "D:\\Masadakılar Rasul\\Code Academy\\Ev tapşırığı\\Lahiyeler\\Greeny\\Greeny\\wwwroot\\images\\product\\1cb156da-285b-4ad0-916c-d619cdee2854_07.jpg",
+      "PackagePath": "staticwebassets\\images\\product\\1cb156da-285b-4ad0-916c-d619cdee2854_07.jpg"
+    },
+    {
       "Id": "D:\\Masadakılar Rasul\\Code Academy\\Ev tapşırığı\\Lahiyeler\\Greeny\\Greeny\\wwwroot\\images\\product\\20.jpg",
       "PackagePath": "staticwebassets\\images\\product\\20.jpg"
+    },
+    {
+      "Id": "D:\\Masadakılar Rasul\\Code Academy\\Ev tapşırığı\\Lahiyeler\\Greeny\\Greeny\\wwwroot\\images\\product\\299b13d2-3c86-4cb0-94f7-c3aa876e294a_14.jpg",
+      "PackagePath": "staticwebassets\\images\\product\\299b13d2-3c86-4cb0-94f7-c3aa876e294a_14.jpg"
+    },
+    {
+      "Id": "D:\\Masadakılar Rasul\\Code Academy\\Ev tapşırığı\\Lahiyeler\\Greeny\\Greeny\\wwwroot\\images\\product\\348144ff-a937-4853-a0cc-63d6b9c16f1e_09.jpg",
+      "PackagePath": "staticwebassets\\images\\product\\348144ff-a937-4853-a0cc-63d6b9c16f1e_09.jpg"
+    },
+    {
+      "Id": "D:\\Masadakılar Rasul\\Code Academy\\Ev tapşırığı\\Lahiyeler\\Greeny\\Greeny\\wwwroot\\images\\product\\5cece7f3-17de-4430-95bb-85bba47c4a43_18.jpg",
+      "PackagePath": "staticwebassets\\images\\product\\5cece7f3-17de-4430-95bb-85bba47c4a43_18.jpg"
+    },
+    {
+      "Id": "D:\\Masadakılar Rasul\\Code Academy\\Ev tapşırığı\\Lahiyeler\\Greeny\\Greeny\\wwwroot\\images\\product\\6d1754eb-b682-404a-8a88-7f2e8c57ce73_04.jpg",
+      "PackagePath": "staticwebassets\\images\\product\\6d1754eb-b682-404a-8a88-7f2e8c57ce73_04.jpg"
+    },
+    {
+      "Id": "D:\\Masadakılar Rasul\\Code Academy\\Ev tapşırığı\\Lahiyeler\\Greeny\\Greeny\\wwwroot\\images\\product\\71d5f087-2dce-4d8d-ba3b-67015b00bbb8_10.jpg",
+      "PackagePath": "staticwebassets\\images\\product\\71d5f087-2dce-4d8d-ba3b-67015b00bbb8_10.jpg"
+    },
+    {
+      "Id": "D:\\Masadakılar Rasul\\Code Academy\\Ev tapşırığı\\Lahiyeler\\Greeny\\Greeny\\wwwroot\\images\\product\\ad211d89-956a-4e9d-868d-1d48aad8ae3e_06.jpg",
+      "PackagePath": "staticwebassets\\images\\product\\ad211d89-956a-4e9d-868d-1d48aad8ae3e_06.jpg"
+    },
+    {
+      "Id": "D:\\Masadakılar Rasul\\Code Academy\\Ev tapşırığı\\Lahiyeler\\Greeny\\Greeny\\wwwroot\\images\\product\\e7041679-59b1-430a-acc0-ee463ec1421a_08.jpg",
+      "PackagePath": "staticwebassets\\images\\product\\e7041679-59b1-430a-acc0-ee463ec1421a_08.jpg"
     },
     {
       "Id": "D:\\Masadakılar Rasul\\Code Academy\\Ev tapşırığı\\Lahiyeler\\Greeny\\Greeny\\wwwroot\\images\\promo\\blog\\01.jpg",

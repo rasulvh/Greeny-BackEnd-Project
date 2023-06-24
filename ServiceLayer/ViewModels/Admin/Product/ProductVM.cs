@@ -1,6 +1,6 @@
 ﻿using DomainLayer.Models;
 
-namespace Greeny.Areas.Admin.ViewModel.Product
+namespace ServiceLayer.ViewModels.Admin.Product
 {
     public class ProductVM
     {

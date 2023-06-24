@@ -719,7 +719,7 @@ namespace RepositoryLayer.Migrations
                     b.HasOne("DomainLayer.Models.Rating", "Rating")
                         .WithMany("Products")
                         .HasForeignKey("RatingId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("DomainLayer.Models.SubCategory", "SubCategory")

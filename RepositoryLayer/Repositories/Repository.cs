@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Query;
 using RepositoryLayer.Data;
 using RepositoryLayer.Repositories.Interfaces;
 using System;
@@ -29,6 +30,21 @@ namespace RepositoryLayer.Repositories
             }
 
             await entities.AddAsync(entity);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task DeleteAsync(T entity)
+        {
+            if (entity is null) throw new ArgumentNullException(nameof(entity));
+
+            entities.Remove(entity);
+
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task UpdateAsync(T entity)
+        {
+            _context.Set<T>().Update(entity);
             await _context.SaveChangesAsync();
         }
 
@@ -71,16 +87,23 @@ namespace RepositoryLayer.Repositories
             return entity ?? throw new NullReferenceException("Data not found");
         }
 
-        public async Task<T> GetByIdWithIncludesAsync(int? id, params Expression<Func<T, object>>[] includes)
+        public async Task<T> GetByIdWithIncludesAsync(int id, Func<IQueryable<T>, IIncludableQueryable<T, object>>[] includes)
         {
             IQueryable<T> query = _context.Set<T>();
 
-            foreach (var include in includes)
+            foreach (var includeFunc in includes)
             {
-                query = query.Include(include);
+                query = includeFunc(query);
             }
 
-            return await query.FirstOrDefaultAsync(m => (int)m.GetType().GetProperty("Id").GetValue(m) == id);
+
+            return await query.FirstOrDefaultAsync(m => EF.Property<int>(m, "Id") == id);
+        }
+
+        public async Task AddRangeAsync(IEnumerable<T> entities)
+        {
+            await _context.Set<T>().AddRangeAsync(entities);
+            await _context.SaveChangesAsync();
         }
     }
 }

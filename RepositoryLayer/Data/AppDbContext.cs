@@ -46,6 +46,11 @@ namespace RepositoryLayer.Data
             .HasMany(e => e.Reviews)
             .WithOne(e => e.Product)
             .OnDelete(DeleteBehavior.Restrict);
+
+            builder.Entity<Rating>()
+            .HasMany(e => e.Products)
+            .WithOne(e => e.Rating)
+            .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

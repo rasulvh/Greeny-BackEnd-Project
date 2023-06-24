@@ -1,9 +1,5 @@
 ﻿using DomainLayer.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using ServiceLayer.ViewModels.Admin.Product;
 
 namespace ServiceLayer.Services.Interfaces
 {
@@ -12,5 +8,11 @@ namespace ServiceLayer.Services.Interfaces
         Task<IEnumerable<Product>> GetAllWithIncludesAsync();
         Task<IEnumerable<Product>> GetAllAsync();
         Task<Product> GetByIdWithIncludesAsync(int id);
+        Task CreateAsync(ProductCreateVM request);
+        Task DeleteAsync(int? id);
+        Task EditAsync(int productId, ProductEditVM request);
+        Task<Product> GetByIdAsync(int id);
+        Task DeleteImageByIdAsync(int id);
+        Task ChangeImageIsMainAsync(int id);
     }
 }

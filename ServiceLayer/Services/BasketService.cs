@@ -1,4 +1,5 @@
 ﻿using DomainLayer.Models;
+using Microsoft.AspNetCore.Http;
 using RepositoryLayer.Repositories.Interfaces;
 using ServiceLayer.Services.Interfaces;
 using System;
@@ -12,10 +13,16 @@ namespace ServiceLayer.Services
     public class BasketService : IBasketService
     {
         private readonly IBasketRepository _basketRepository;
+        private readonly IHttpContextAccessor _accessor;
+        private readonly IProductService _productService;
 
-        public BasketService(IBasketRepository basketRepository)
+        public BasketService(IBasketRepository basketRepository,
+                             IHttpContextAccessor accessor,
+                             IProductService productService)
         {
             _basketRepository = basketRepository;
+            _accessor = accessor;
+            _productService = productService;
         }
 
         public async Task CreateAsync(AppUser user)

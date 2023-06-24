@@ -116,9 +116,12 @@
                                 <a href="#">(@item.Reviews.Count)</a>
                             </div>
                             <h6 class="product-name"><a href="#">@item.Name</a></h6>
-                            <h6 class="product-price"><del>$@item.Price</del><span>$@(item.Price*item.Discount.Percent/100)<small>/piece</small></span></h6><button class="product-add" title="Add to Cart">
-                                <i class="fas fa-shopping-basket"></i><span>add</span>
-                            </button>
+                            <h6 class="product-price"><del>$@item.Price</del><span>$@(item.Price*(100-item.Discount.Percent)/100)<small>/piece</small></span></h6>
+                            <form id="basket-form" data-id="@item.Id">
+                                <button class="product-add" title="Add to Cart" type="submit">
+                                    <i class="fas fa-shopping-basket"></i><span>add</span>
+                                </button>
+                            </form>
                             <div class="product-action">
                                 <button class="action-minus" title="Quantity Minus">
                                     <i class="icofont-minus"></i>

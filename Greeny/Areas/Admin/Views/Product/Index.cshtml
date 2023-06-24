@@ -7,7 +7,7 @@
     <h1 class="text-center mb-5">Products</h1>
 
     <div class="container">
-        <button class="btn btn-success mb-3"><i class="fa-regular fa-plus"></i></button>
+        <a asp-action="Create" class="btn btn-success mb-3"><i class="fa-regular fa-plus"></i></a>
 
         <div class="bg-light rounded h-100 p-4">
             <table class="table">
@@ -35,9 +35,11 @@
                             <td><span style="margin-top:62px;display:block;font-weight:600">@item.StockCount</span></td>
                             <td><span style="margin-top:62px;display:block;font-weight:600">@item.Category</span></td>
                             <td style="display: flex;flex-direction: column;justify-content: space-around;align-items: center;height: 166.8px;">
-                                <button class="btn btn-primary"><i class="fa-regular fa-circle-info"></i></button>
-                                <button class="btn btn-warning"><i class="fa-regular fa-pen-to-square"></i></button>
-                                <button class="btn btn-danger"><i class="fa-regular fa-trash"></i></button>
+                                <a asp-action="Detail" asp-route-id="@item.Id" class="btn btn-primary"><i class="fa-regular fa-circle-info"></i></a>
+                                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning"><i class="fa-regular fa-pen-to-square"></i></a>
+                                <form method="post" asp-action="Delete" asp-route-id="@item.Id">
+                                    <button type="submit" class="btn btn-danger"><i class="fa-regular fa-trash"></i></button>
+                                </form>
                             </td>
                         </tr>
                     }

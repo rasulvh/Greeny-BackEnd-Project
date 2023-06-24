@@ -1,0 +1,113 @@
+﻿@model ProductEditVM
+@{
+    ViewData["Title"] = "Edit";
+}
+
+@section Style{
+    <style>
+        .images{
+            display:flex;
+        }
+        .images .image{
+            margin-right:20px;
+            width:150px;
+            height:150px;
+            position:relative;
+        }
+        .images .image img{
+            width:inherit;
+            height:inherit;
+            box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+            transition:all 0.5s;
+        }
+
+            .images .image:hover button {
+                opacity: 1;
+            }
+
+            .images .image:hover img {
+                filter: brightness(50%)
+            }
+
+            .images .image button {
+                position: absolute;
+                left: 42px;
+                top: 55px;
+                opacity: 0;
+                transition: all 0.5s;
+            }
+
+            .main-image{
+            background-color: #a7ffa7;
+            }
+    </style>
+}
+
+<div class="container">
+    <h1 class="my-5 text-center">Edit Product</h1>
+
+    <div class="images mb-5">
+        @foreach (var item in Model.Images)
+        {
+            <div class="image">
+                <img src="~/images/product/@item.Image">
+
+                @if (!item.IsMain)
+                {
+                    <button data-id="@item.Id" class="btn btn-danger">Delete</button>
+                }
+
+                <div data-id="@item.Id" class="@(item.IsMain ? "main-image" : "") change-ismain" style="width:15px;height:15px;border-radius:100%;border:1px solid rgba(0,0,0,0.3);position:absolute;left:65px;top:165px"></div>
+            </div>
+        }
+    </div>
+    <form method="post" enctype="multipart/form-data" asp-action="Edit">
+        <div class="form-group mt-3">
+            <input asp-for=Name class="form-control" placeholder="Name" />
+        </div>
+        <div class="form-group mt-3">
+            <input asp-for=Description class="form-control" placeholder="Description" />
+        </div>
+        <div class="form-group mt-3">
+            <input asp-for=StockCount class="form-control" placeholder="Stock Count" />
+        </div>
+        <div class="form-group mt-3">
+            <input asp-for=Price class="form-control" placeholder="Price" />
+        </div>
+        <div class="form-group mt-3">
+            <select asp-for=CategoryId class="form-control" asp-items="ViewBag.categories"></select>
+        </div>
+        <div class="form-group mt-3">
+            <select asp-for=SubCategoryId class="form-control" asp-items="ViewBag.subcategories"></select>
+        </div>
+        <div class="form-group mt-3">
+            <select asp-for=DiscountId class="form-control" asp-items="ViewBag.discounts"></select>
+        </div>
+        <div class="form-group mt-3">
+            <select asp-for=BrandId class="form-control" asp-items="ViewBag.brands"></select>
+        </div>
+        <div class="form-group mt-3">
+            <lable>New Images</lable>
+            <input asp-for=NewImages class="form-control" />
+        </div>
+        <div class="form-group mt-3">
+            <label>Tags</label>
+            @for (var i = 0; i < Model.Tags.Count; i++)
+            {
+                <div class="form-check">
+                    <input type="checkbox" asp-for="@Model.Tags[i].IsChecked" class="form-check-input" />
+                    <label class="form-check-label" asp-for="@Model.Tags[i].IsChecked">
+                        @Model.Tags[i].Value
+                    </label>
+                    <input type="hidden" asp-for="@Model.Tags[i].Id" />
+                    <input type="hidden" asp-for="@Model.Tags[i].Value" />
+                    <br />
+                </div>
+            }
+        </div>
+        <a asp-action="Index" class="btn btn-primary">Back</a>
+        <button type="submit" class="btn btn-success">Submit</button>
+    </form>
+
+    <div asp-validation-summary="All"></div>
+</div>

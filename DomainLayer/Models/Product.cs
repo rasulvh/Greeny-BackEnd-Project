@@ -20,6 +20,7 @@ namespace DomainLayer.Models
         public Discount Discount { get; set; }
         public int BrandId { get; set; }
         public Brand Brand { get; set; }
+        [ForeignKey("Rating")]
         public int RatingId { get; set; }
         public Rating Rating { get; set; }
         public ICollection<ProductImage> Images { get; set; }

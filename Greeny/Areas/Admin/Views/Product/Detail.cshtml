@@ -1,0 +1,221 @@
+﻿@model ProductDetailVM
+@{
+    ViewData["Title"] = "Detail";
+}
+
+@section Style{
+    <style>
+        /* Global Styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container-edit {
+            background-color: #ffffff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            border-radius:15px;
+        }
+
+        h1, h2, h3 {
+            margin: 0;
+            font-weight: bold;
+            color: #333333;
+        }
+
+        p {
+            margin: 0;
+        }
+
+        /* Product Header */
+        .product-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+            .product-header h1 {
+                font-size: 24px;
+            }
+
+            .product-header .product-code {
+                font-size: 14px;
+                color: #999999;
+            }
+
+        /* Product Image */
+        .product-image {
+            max-width: 100%;
+            height:200px;
+            width:200px;
+            box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+            margin-bottom: 20px;
+        }
+
+        /* Product Description */
+        .product-description {
+            margin-bottom: 20px;
+        }
+
+        /* Product Properties */
+        .product-properties {
+            margin-bottom: 20px;
+        }
+
+            .product-properties li {
+                margin-bottom: 10px;
+                display: flex;
+                align-items: center;
+            }
+
+                .product-properties li strong {
+                    font-weight: bold;
+                    width: 160px;
+                }
+
+        /* Product Rating */
+        .product-rating {
+            margin-bottom: 20px;
+        }
+
+        /* Product Price */
+        .product-price {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+            .product-price .price {
+                margin-right: 10px;
+            }
+
+            .product-price .discount {
+                color: #ff0000;
+            }
+
+        /* Product Stock */
+        .product-stock {
+            margin-bottom: 20px;
+        }
+
+            .product-stock strong {
+                font-weight: bold;
+            }
+
+        /* Product Reviews */
+        .product-reviews {
+            margin-bottom: 20px;
+        }
+
+        .review {
+            margin-bottom: 10px;
+            padding: 10px;
+            box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+            border-radius: 10px;
+        }
+
+            .review h3 {
+                margin-bottom: 5px;
+                font-size: 16px;
+            }
+
+            .review p {
+                color: #666666;
+            }
+
+        /* Product Categories */
+        .product-categories {
+            margin-bottom: 20px;
+        }
+
+            .product-categories h2 {
+                margin-bottom: 10px;
+            }
+
+        .category-item {
+            display: inline-block;
+            background-color: #f2f2f2;
+            padding: 5px 10px;
+            border-radius: 5px;
+            margin-right: 10px;
+            margin-bottom: 10px;
+            color: #666666;
+            font-size: 14px;
+        }
+
+        /* Discount Badge */
+        .discount-badge {
+            display: inline-block;
+            background-color: #ff0000;
+            color: #ffffff;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+    </style>
+}
+
+
+<div class="container container-edit">
+    <h1 class="mb-3">@Model.Name</h1>
+    @foreach (var item in Model.Images)
+    {
+        <img class="product-image" src="~/images/product/@item.Image" alt="Product Image">
+    }
+    <div class="product-description">
+        <h2>Description</h2>
+        <p>@Model.Description</p>
+    </div>
+    <ul class="product-properties">
+        <li><strong>SKU:</strong> @Model.SKU</li>
+        <li><strong>Sale Count:</strong> @Model.SaleCount</li>
+        <li><strong>Stock Count:</strong> @Model.StockCount</li>
+        <li><strong>Price:</strong> $@Model.Price</li>
+        <li><strong>Category:</strong> @Model.Category</li>
+        <li><strong>Subcategory:</strong> @Model.SubCategory</li>
+        <li><strong>Discount Name:</strong> @Model.DiscountName</li>
+        <li><strong>Discount Percent:</strong> @Model.DiscountPercent%</li>
+        <li><strong>Brand:</strong> @Model.Brand</li>
+        <li>
+            <strong>Tags:</strong>
+            @foreach (var item in Model.ProductTags)
+            {
+                if(item.ProductId == Model.Id)
+                {
+                    <span>/@item.Tag.Name/</span>
+                }
+            }
+        </li>
+    </ul>
+    <div class="product-rating">
+        <h2>Rating</h2>
+        @for (int i = 0; i < Model.Rating; i++)
+        {
+            <i class="fa-solid fa-star" style="color: #ffff00;"></i>
+        }
+        @for (int i = 0; i < (5 - Model.Rating); i++)
+        {
+            <i class="fa-solid fa-star" style="opacity:0.3"></i>
+        }
+    </div>
+    <h2 class="mb-3">Reviews</h2>
+    <div class="product-reviews">
+        @foreach (var item in Model.Reviews)
+        {
+            <div class="review">
+                <h3>@item.AppUser.Fullname</h3>
+                <p>@item.Text</p>
+            </div>
+        }
+    </div>
+</div>
+
+<div class="container">
+    <a asp-action="Index" class="btn btn-primary">Back</a>
+</div>
