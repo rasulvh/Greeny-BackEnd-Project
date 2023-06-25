@@ -63,13 +63,13 @@ namespace RepositoryLayer.Repositories
             return await entities.ToListAsync();
         }
 
-        public async Task<IEnumerable<T>> GetAllWithIncludesAsync(params Expression<Func<T, object>>[] includes)
+        public async Task<IEnumerable<T>> GetAllWithIncludesAsync(Func<IQueryable<T>, IIncludableQueryable<T, object>>[] includes)
         {
             IQueryable<T> query = _context.Set<T>();
 
             foreach (var include in includes)
             {
-                query = query.Include(include);
+                query = include(query);
             }
 
             return await query.ToListAsync();

@@ -16,7 +16,7 @@ namespace RepositoryLayer.Repositories.Interfaces
         Task<T> GetByIdAsync(int? id);
         Task<T> GetByIdWithIncludesAsync(int id, Func<IQueryable<T>, IIncludableQueryable<T, object>>[] includes);
         Task<IEnumerable<T>> FindAllAsync(Expression<Func<T, bool>> expression = null);
-        Task<IEnumerable<T>> GetAllWithIncludesAsync(params Expression<Func<T, object>>[] includes);
+        Task<IEnumerable<T>> GetAllWithIncludesAsync(Func<IQueryable<T>, IIncludableQueryable<T, object>>[] includes);
         Task<IEnumerable<T>> GetAllAsync();
         Task AddRangeAsync(IEnumerable<T> entities);
     }

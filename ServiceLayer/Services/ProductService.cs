@@ -91,16 +91,16 @@ namespace ServiceLayer.Services
 
         public async Task<IEnumerable<Product>> GetAllWithIncludesAsync()
         {
-            Expression<Func<Product, object>>[] includes =
+            Func<IQueryable<Product>, IIncludableQueryable<Product, object>>[] includes =
             {
-                entity => entity.ProductTags,
-                entity => entity.Images,
-                entity => entity.SubCategory,
-                entity => entity.Category,
-                entity => entity.Brand,
-                entity => entity.Discount,
-                entity => entity.Rating,
-                entity => entity.Reviews,
+                entity => entity.Include(m=>m.ProductTags),
+                entity => entity.Include(m=>m.Images),
+                entity => entity.Include(m => m.SubCategory),
+                entity => entity.Include(m => m.Category),
+                entity => entity.Include(m => m.Brand),
+                entity => entity.Include(m => m.Discount),
+                entity => entity.Include(m => m.Rating),
+                entity => entity.Include(m => m.Reviews),
             };
 
             return await _productRepository.GetAllWithIncludesAsync(includes);

@@ -1153,36 +1153,32 @@
       "PackagePath": "staticwebassets\\images\\single-banner.jpg"
     },
     {
-      "Id": "D:\\Masadakılar Rasul\\Code Academy\\Ev tapşırığı\\Lahiyeler\\Greeny\\Greeny\\wwwroot\\images\\suggest\\01.jpg",
-      "PackagePath": "staticwebassets\\images\\suggest\\01.jpg"
+      "Id": "D:\\Masadakılar Rasul\\Code Academy\\Ev tapşırığı\\Lahiyeler\\Greeny\\Greeny\\wwwroot\\images\\suggest\\039ce724-b6c5-4286-b87e-c765c82abbf3_07.jpg",
+      "PackagePath": "staticwebassets\\images\\suggest\\039ce724-b6c5-4286-b87e-c765c82abbf3_07.jpg"
     },
     {
-      "Id": "D:\\Masadakılar Rasul\\Code Academy\\Ev tapşırığı\\Lahiyeler\\Greeny\\Greeny\\wwwroot\\images\\suggest\\02.jpg",
-      "PackagePath": "staticwebassets\\images\\suggest\\02.jpg"
+      "Id": "D:\\Masadakılar Rasul\\Code Academy\\Ev tapşırığı\\Lahiyeler\\Greeny\\Greeny\\wwwroot\\images\\suggest\\51270a3e-9991-4307-920f-3d4b3d6f78a7_06.jpg",
+      "PackagePath": "staticwebassets\\images\\suggest\\51270a3e-9991-4307-920f-3d4b3d6f78a7_06.jpg"
     },
     {
-      "Id": "D:\\Masadakılar Rasul\\Code Academy\\Ev tapşırığı\\Lahiyeler\\Greeny\\Greeny\\wwwroot\\images\\suggest\\03.jpg",
-      "PackagePath": "staticwebassets\\images\\suggest\\03.jpg"
+      "Id": "D:\\Masadakılar Rasul\\Code Academy\\Ev tapşırığı\\Lahiyeler\\Greeny\\Greeny\\wwwroot\\images\\suggest\\532cb152-a446-45f5-a7b1-26b724311e2e_01.jpg",
+      "PackagePath": "staticwebassets\\images\\suggest\\532cb152-a446-45f5-a7b1-26b724311e2e_01.jpg"
     },
     {
-      "Id": "D:\\Masadakılar Rasul\\Code Academy\\Ev tapşırığı\\Lahiyeler\\Greeny\\Greeny\\wwwroot\\images\\suggest\\04.jpg",
-      "PackagePath": "staticwebassets\\images\\suggest\\04.jpg"
+      "Id": "D:\\Masadakılar Rasul\\Code Academy\\Ev tapşırığı\\Lahiyeler\\Greeny\\Greeny\\wwwroot\\images\\suggest\\71a41917-9b86-4ef1-9dd6-7e03ba3766e3_05.jpg",
+      "PackagePath": "staticwebassets\\images\\suggest\\71a41917-9b86-4ef1-9dd6-7e03ba3766e3_05.jpg"
     },
     {
-      "Id": "D:\\Masadakılar Rasul\\Code Academy\\Ev tapşırığı\\Lahiyeler\\Greeny\\Greeny\\wwwroot\\images\\suggest\\05.jpg",
-      "PackagePath": "staticwebassets\\images\\suggest\\05.jpg"
+      "Id": "D:\\Masadakılar Rasul\\Code Academy\\Ev tapşırığı\\Lahiyeler\\Greeny\\Greeny\\wwwroot\\images\\suggest\\7b3f3ae0-9b2d-4189-bbaa-157c2973c0c4_08.jpg",
+      "PackagePath": "staticwebassets\\images\\suggest\\7b3f3ae0-9b2d-4189-bbaa-157c2973c0c4_08.jpg"
     },
     {
-      "Id": "D:\\Masadakılar Rasul\\Code Academy\\Ev tapşırığı\\Lahiyeler\\Greeny\\Greeny\\wwwroot\\images\\suggest\\06.jpg",
-      "PackagePath": "staticwebassets\\images\\suggest\\06.jpg"
+      "Id": "D:\\Masadakılar Rasul\\Code Academy\\Ev tapşırığı\\Lahiyeler\\Greeny\\Greeny\\wwwroot\\images\\suggest\\b299f87f-2fe5-4e57-bd71-403fb99d7630_04.jpg",
+      "PackagePath": "staticwebassets\\images\\suggest\\b299f87f-2fe5-4e57-bd71-403fb99d7630_04.jpg"
     },
     {
-      "Id": "D:\\Masadakılar Rasul\\Code Academy\\Ev tapşırığı\\Lahiyeler\\Greeny\\Greeny\\wwwroot\\images\\suggest\\07.jpg",
-      "PackagePath": "staticwebassets\\images\\suggest\\07.jpg"
-    },
-    {
-      "Id": "D:\\Masadakılar Rasul\\Code Academy\\Ev tapşırığı\\Lahiyeler\\Greeny\\Greeny\\wwwroot\\images\\suggest\\08.jpg",
-      "PackagePath": "staticwebassets\\images\\suggest\\08.jpg"
+      "Id": "D:\\Masadakılar Rasul\\Code Academy\\Ev tapşırığı\\Lahiyeler\\Greeny\\Greeny\\wwwroot\\images\\suggest\\b3628ef7-c016-48b4-8b63-a2f11e0c07e5_03.jpg",
+      "PackagePath": "staticwebassets\\images\\suggest\\b3628ef7-c016-48b4-8b63-a2f11e0c07e5_03.jpg"
     },
     {
       "Id": "D:\\Masadakılar Rasul\\Code Academy\\Ev tapşırığı\\Lahiyeler\\Greeny\\Greeny\\wwwroot\\images\\team\\01.jpg",
@@ -1227,6 +1223,10 @@
     {
       "Id": "D:\\Masadakılar Rasul\\Code Academy\\Ev tapşırığı\\Lahiyeler\\Greeny\\Greeny\\wwwroot\\js\\accordion.js",
       "PackagePath": "staticwebassets\\js\\accordion.js"
+    },
+    {
+      "Id": "D:\\Masadakılar Rasul\\Code Academy\\Ev tapşırığı\\Lahiyeler\\Greeny\\Greeny\\wwwroot\\js\\basket.js",
+      "PackagePath": "staticwebassets\\js\\basket.js"
     },
     {
       "Id": "D:\\Masadakılar Rasul\\Code Academy\\Ev tapşırığı\\Lahiyeler\\Greeny\\Greeny\\wwwroot\\js\\countdown.js",
