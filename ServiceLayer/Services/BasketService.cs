@@ -36,23 +36,14 @@ namespace ServiceLayer.Services
             await _basketRepository.CreateAsync(basket);
         }
 
-        public List<BasketVM> GetAll()
+        public async Task<Basket> GetBasketByUserIdAsync(string userId)
         {
-            List<BasketVM> basket;
-
-            if (_accessor.HttpContext.Session.GetString("basket") != null)
-            {
-                basket = JsonSerializer.Deserialize<List<BasketVM>>(_accessor.HttpContext.Session.GetString("basket"));
-            }
-            else
-            {
-                basket = new List<BasketVM>();
-            }
-
+            var baskets = await _basketRepository.FindByConditionAsync(m => m.AppUserId == userId);
+            var basket = baskets.FirstOrDefault();
             return basket;
         }
 
-        public void AddProduct(List<BasketVM> basket, Product product)
+        public void AddProductToBasket(List<BasketVM> basket, Product product)
         {
             BasketVM existProduct = basket.FirstOrDefault(m => m.Id == product.Id);
 
@@ -70,6 +61,22 @@ namespace ServiceLayer.Services
             }
 
             _accessor.HttpContext.Session.SetString("basket", JsonSerializer.Serialize(basket));
+        }
+
+        public List<BasketVM> GetBasketDatas()
+        {
+            List<BasketVM> basket;
+
+            if (_accessor.HttpContext.Session.GetString("basket") != null)
+            {
+                basket = JsonSerializer.Deserialize<List<BasketVM>>(_accessor.HttpContext.Session.GetString("basket"));
+            }
+            else
+            {
+                basket = new List<BasketVM>();
+            }
+
+            return basket;
         }
     }
 }

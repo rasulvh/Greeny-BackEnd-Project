@@ -105,5 +105,15 @@ namespace RepositoryLayer.Repositories
             await _context.Set<T>().AddRangeAsync(entities);
             await _context.SaveChangesAsync();
         }
+
+        public async Task<T> GetByExpressionForPivotTable(Expression<Func<T, bool>> expression)
+        {
+            return await entities.FirstOrDefaultAsync(expression);
+        }
+
+        public async Task<IEnumerable<T>> FindByConditionAsync(Expression<Func<T, bool>> expression)
+        {
+            return await entities.Where(expression).ToListAsync();
+        }
     }
 }

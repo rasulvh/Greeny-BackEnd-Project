@@ -1,14 +1,13 @@
-﻿using ServiceLayer.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using DomainLayer.Models;
+using ServiceLayer.ViewModels;
 
 namespace ServiceLayer.Services.Interfaces
 {
     public interface ISliderService
     {
         Task<List<SliderVM>> GetAllAsync();
+        Task<Slider> GetByIdAsync(int id);
+        Task<int> GetCountAsync();
+        Task<bool> ChangeStatusAsync(Slider slider);
     }
 }

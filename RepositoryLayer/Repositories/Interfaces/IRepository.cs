@@ -19,5 +19,7 @@ namespace RepositoryLayer.Repositories.Interfaces
         Task<IEnumerable<T>> GetAllWithIncludesAsync(Func<IQueryable<T>, IIncludableQueryable<T, object>>[] includes);
         Task<IEnumerable<T>> GetAllAsync();
         Task AddRangeAsync(IEnumerable<T> entities);
+        Task<T> GetByExpressionForPivotTable(Expression<Func<T, bool>> expression);
+        Task<IEnumerable<T>> FindByConditionAsync(Expression<Func<T, bool>> expression);
     }
 }

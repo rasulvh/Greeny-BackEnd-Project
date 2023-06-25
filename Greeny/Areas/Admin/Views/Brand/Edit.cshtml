@@ -1,0 +1,24 @@
+﻿@model BrandEditVM
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<div class="container">
+    <h1 class="my-5 text-center">Edit Brand</h1>
+    <div class="image">
+        <img src="~/images/brand/@Model.Image" style="width:400px;height250px;box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;" />
+    </div>
+    <form method="post" enctype="multipart/form-data" asp-action="Edit">
+        <div class="form-group mt-3">
+            <input asp-for=Name class="form-control" placeholder="Name" />
+        </div>
+        <div class="form-group mt-3">
+            <lable>New Image</lable>
+            <input asp-for=NewImage class="form-control" />
+        </div>
+        <div asp-validation-summary="All"></div>
+        <a asp-action="Index" class="btn btn-primary">Back</a>
+        <button type="submit" class="btn btn-success">Submit</button>
+    </form>
+</div>
+

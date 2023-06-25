@@ -58,6 +58,7 @@ builder.Services.AddScoped<ITagRepository, TagRepository>();
 builder.Services.AddScoped<IProductTagRepository, ProductTagRepository>();
 builder.Services.AddScoped<IReviewRepository, ReviewRepository>();
 builder.Services.AddScoped<IProductImageRepository, ProductImageRepository>();
+builder.Services.AddScoped<IProductBasketRepository, ProductBasketRepository>();
 
 //Services
 builder.Services.AddScoped<ISliderService, SliderService>();
@@ -73,6 +74,7 @@ builder.Services.AddScoped<IBrandService, BrandService>();
 builder.Services.AddScoped<ITagService, TagService>();
 builder.Services.AddScoped<IProductTagService, ProductTagService>();
 builder.Services.AddScoped<IReviewService, ReviewService>();
+builder.Services.AddScoped<IProductBasketService, ProductBasketService>();
 
 var app = builder.Build();
 

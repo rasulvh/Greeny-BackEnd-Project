@@ -44,21 +44,5 @@ namespace Greeny.Controllers
 
             return View();
         }
-
-        [HttpPost]
-        public async Task<IActionResult> AddBasket(int? id)
-        {
-            if (id is null) return BadRequest();
-
-            Product product = await _productService.GetByIdAsync((int)id);
-
-            if (product is null) return NotFound();
-
-            List<BasketVM> basket = _basketService.GetAll();
-
-            _basketService.AddProduct(basket, product);
-
-            return Ok(basket.Sum(m => m.Count));
-        }
     }
 }

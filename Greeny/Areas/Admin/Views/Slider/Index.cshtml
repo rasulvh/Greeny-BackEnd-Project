@@ -1,0 +1,68 @@
+﻿@model List<SliderVM>
+@{
+    ViewData["Title"] = "Index";
+}
+
+@section Style{
+    <style>
+        .status-slider {
+            width:30px;
+            height:30px;
+            border-radius:100%;
+            margin-top: 59.8px;
+            cursor:pointer;
+        }
+
+        .active-slider{
+            background-color:lawngreen;
+        }
+
+        .disable-slider{
+            background-color:red;
+        }
+    </style>
+}
+
+<div class="container my-4">
+    <h1 class="text-center mb-5">Sliders</h1>
+
+    <div class="container">
+        <a asp-action="Create" class="btn btn-success mb-3"><i class="fa-regular fa-plus"></i></a>
+
+        <div class="bg-light rounded h-100 p-4">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Image</th>
+                        <th scope="col">Title</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Options</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.OrderByDescending(m => m.Id))
+                    {
+                        <tr>
+                            <th><img src="~/images/home/index/@item.Image" style="width:150px;height:150px" /></th>
+                            <td><span style="margin-top:62px;display:block;font-weight:600">@item.Title</span></td>
+                            <td>
+                                <div data-id="@item.Id" class="status-slider @(item.Status ? "active-slider" : "disable-slider")"></div>
+                            </td>
+                            <td style="display: flex;flex-direction: column;justify-content: space-around;align-items: center;height: 166.8px;">
+                                <a asp-action="Detail" asp-route-id="@item.Id" class="btn btn-primary"><i class="fa-regular fa-circle-info"></i></a>
+                                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning"><i class="fa-regular fa-pen-to-square"></i></a>
+                                <form method="post" asp-action="Delete" asp-route-id="@item.Id">
+                                    <button type="submit" class="btn btn-danger"><i class="fa-regular fa-trash"></i></button>
+                                </form>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+@section AdminScripts{
+    <script src="~/admin/js/slider.js"></script>
+}

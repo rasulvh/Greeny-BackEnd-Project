@@ -24,7 +24,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (var item in Model)
+                    @foreach (var item in Model.OrderByDescending(m=>m.Id))
                     {
                         <tr>
                             <th><img src="~/images/product/@item.Image" style="width:100px;height:150px"/></th>

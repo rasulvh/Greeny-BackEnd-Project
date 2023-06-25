@@ -76,7 +76,7 @@ namespace ServiceLayer.Services
         public async Task<IEnumerable<Category>> GetAllWithIncludesAsync()
         {
             Func<IQueryable<Category>, IIncludableQueryable<Category, object>>[] includes =
-{
+            {
                 entity => entity.Include(m=>m.SubCategories),
                 entity => entity.Include(m=>m.Products),
             };

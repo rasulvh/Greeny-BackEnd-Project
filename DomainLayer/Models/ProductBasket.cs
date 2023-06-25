@@ -13,5 +13,6 @@ namespace DomainLayer.Models
         public Product Product { get; set; }
         public int BasketId { get; set; }
         public Basket Basket { get; set; }
+        public int ProductCount { get; set; }
     }
 }

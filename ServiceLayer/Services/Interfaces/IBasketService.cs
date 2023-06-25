@@ -11,7 +11,8 @@ namespace ServiceLayer.Services.Interfaces
     public interface IBasketService
     {
         Task CreateAsync(AppUser user);
-        List<BasketVM> GetAll();
-        void AddProduct(List<BasketVM> basket, Product product);
+        Task<Basket> GetBasketByUserIdAsync(string userId);
+        void AddProductToBasket(List<BasketVM> basket, Product product);
+        List<BasketVM> GetBasketDatas();
     }
 }
