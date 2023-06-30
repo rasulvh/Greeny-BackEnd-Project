@@ -1,0 +1,19 @@
+﻿@model ContactEditVM
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<div class="container">
+    <h1 class="my-5 text-center">Edit Contact</h1>
+
+    <form method="post" enctype="multipart/form-data" asp-action="Edit">
+        <div class="form-group mt-3">
+            <input asp-for=Title class="form-control" placeholder="Title" />
+        </div>
+        <div class="form-group mt-3">
+            <input asp-for=Text class="form-control" placeholder="Text" />
+        </div>
+        <a asp-action="Index" class="btn btn-primary">Back</a>
+        <button type="submit" class="btn btn-success">Submit</button>
+    </form>
+</div>

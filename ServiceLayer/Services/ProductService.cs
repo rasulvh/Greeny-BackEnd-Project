@@ -13,6 +13,7 @@ using ServiceLayer.ViewModels.Admin.Product;
 using ServiceLayer.ViewModels.Admin;
 using ServiceLayer.Helpers;
 using Microsoft.AspNetCore.Hosting;
+using RepositoryLayer.Repositories;
 
 namespace ServiceLayer.Services
 {
@@ -98,6 +99,19 @@ namespace ServiceLayer.Services
                 entity => entity.Include(m => m.SubCategory),
                 entity => entity.Include(m => m.Category),
                 entity => entity.Include(m => m.Brand),
+                entity => entity.Include(m => m.Discount),
+                entity => entity.Include(m => m.Rating),
+                entity => entity.Include(m => m.Reviews),
+            };
+
+            return await _productRepository.GetAllWithIncludesAsync(includes);
+        }
+
+        public async Task<IEnumerable<Product>> GetAllWithSomeIncludesAsync()
+        {
+            Func<IQueryable<Product>, IIncludableQueryable<Product, object>>[] includes =
+            {
+                entity => entity.Include(m=>m.Images),
                 entity => entity.Include(m => m.Discount),
                 entity => entity.Include(m => m.Rating),
                 entity => entity.Include(m => m.Reviews),
@@ -242,6 +256,23 @@ namespace ServiceLayer.Services
             {
                 await _productImageRepository.UpdateAsync(item);
             }
+        }
+
+        public async Task<List<Product>> GetSearchedBlogs(string searchText = null)
+        {
+            var products = await _productRepository.GetAllAsync();
+
+            List<Product> searchProducts = new();
+
+            foreach (var item in products)
+            {
+                if (item.Name.ToLower().Contains(searchText))
+                {
+                    searchProducts.Add(item);
+                }
+            }
+
+            return searchProducts;
         }
     }
 }

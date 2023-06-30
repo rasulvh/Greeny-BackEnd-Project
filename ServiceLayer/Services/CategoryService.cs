@@ -91,19 +91,16 @@ namespace ServiceLayer.Services
 
         public async Task EditAsync(int categoryId, CategoryEditVM request)
         {
-            string image = string.Empty;
-
             var category = await _categoryRepository.GetByIdAsync(categoryId);
 
             if (request.NewImage != null)
             {
                 string fileName = Guid.NewGuid().ToString() + "_" + request.NewImage.FileName;
-                image = fileName;
+                category.Image = fileName;
                 await request.NewImage.SaveFileAsync(fileName, _env.WebRootPath, "images/suggest");
             }
 
             category.Name = request.Name;
-            category.Image = image;
 
             await _categoryRepository.UpdateAsync(category);
         }

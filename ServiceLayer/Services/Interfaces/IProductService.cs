@@ -6,6 +6,7 @@ namespace ServiceLayer.Services.Interfaces
     public interface IProductService
     {
         Task<IEnumerable<Product>> GetAllWithIncludesAsync();
+        Task<IEnumerable<Product>> GetAllWithSomeIncludesAsync();
         Task<IEnumerable<Product>> GetAllAsync();
         Task<Product> GetByIdWithIncludesAsync(int id);
         Task CreateAsync(ProductCreateVM request);
@@ -14,5 +15,6 @@ namespace ServiceLayer.Services.Interfaces
         Task<Product> GetByIdAsync(int id);
         Task DeleteImageByIdAsync(int id);
         Task ChangeImageIsMainAsync(int id);
+        Task<List<Product>> GetSearchedBlogs(string searchText = null);
     }
 }

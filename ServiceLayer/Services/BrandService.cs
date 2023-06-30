@@ -103,5 +103,17 @@ namespace ServiceLayer.Services
 
             await _brandRepository.UpdateAsync(brand);
         }
+
+        public async Task<List<Brand>> GetPaginatedDatasAsync(int page, int take)
+        {
+            return await _brandRepository.GetPaginatedDatasAsync(page, take);
+        }
+
+        public async Task<int> GetCountAsync()
+        {
+            var brands = await _brandRepository.GetAllAsync();
+
+            return brands.Count();
+        }
     }
 }

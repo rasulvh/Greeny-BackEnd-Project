@@ -2,6 +2,7 @@
 using RepositoryLayer.Data;
 using RepositoryLayer.Repositories.Interfaces;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,6 +17,11 @@ namespace RepositoryLayer.Repositories
         public Dictionary<string, string> GetAllDatas()
         {
             return _context.Settings.AsEnumerable().ToDictionary(m => m.Key, m => m.Value);
+        }
+
+        public List<Setting> GetAllWithIdsDatas()
+        {
+            return _context.Settings.AsEnumerable().ToList();
         }
     }
 }

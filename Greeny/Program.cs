@@ -59,6 +59,11 @@ builder.Services.AddScoped<IProductTagRepository, ProductTagRepository>();
 builder.Services.AddScoped<IReviewRepository, ReviewRepository>();
 builder.Services.AddScoped<IProductImageRepository, ProductImageRepository>();
 builder.Services.AddScoped<IProductBasketRepository, ProductBasketRepository>();
+builder.Services.AddScoped<IBlogRepository, BlogRepository>();
+builder.Services.AddScoped<ICityRepository, CityRepository>();
+builder.Services.AddScoped<IContactRepository, ContactRepository>();
+builder.Services.AddScoped<IReasonRepository, ReasonRepository>();
+builder.Services.AddScoped<ITeamRepository, TeamRepository>();
 
 //Services
 builder.Services.AddScoped<ISliderService, SliderService>();
@@ -75,6 +80,12 @@ builder.Services.AddScoped<ITagService, TagService>();
 builder.Services.AddScoped<IProductTagService, ProductTagService>();
 builder.Services.AddScoped<IReviewService, ReviewService>();
 builder.Services.AddScoped<IProductBasketService, ProductBasketService>();
+builder.Services.AddScoped<ISettingService, SettingService>();
+builder.Services.AddScoped<IBlogService, BlogService>();
+builder.Services.AddScoped<ICityService, CityService>();
+builder.Services.AddScoped<IContactService, ContactService>();
+builder.Services.AddScoped<IReasonService, ReasonService>();
+builder.Services.AddScoped<ITeamService, TeamService>();
 
 var app = builder.Build();
 

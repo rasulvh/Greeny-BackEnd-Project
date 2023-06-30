@@ -1,4 +1,5 @@
 ﻿using DomainLayer.Models;
+using Microsoft.EntityFrameworkCore;
 using RepositoryLayer.Data;
 using RepositoryLayer.Repositories.Interfaces;
 using System;
@@ -13,6 +14,16 @@ namespace RepositoryLayer.Repositories
     {
         public BrandRepository(AppDbContext context) : base(context)
         {
+        }
+
+        public async Task<List<Brand>> GetPaginatedDatasAsync(int page, int take)
+        {
+            return await _context.Brands
+                .Include(m => m.Products)
+                .Where(m => !m.SoftDelete)
+                .Skip((page - 1) * take)
+                .Take(take)
+                .ToListAsync();
         }
     }
 }

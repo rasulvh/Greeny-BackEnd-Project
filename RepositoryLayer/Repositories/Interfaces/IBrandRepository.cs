@@ -9,5 +9,6 @@ namespace RepositoryLayer.Repositories.Interfaces
 {
     public interface IBrandRepository : IRepository<Brand>
     {
+        Task<List<Brand>> GetPaginatedDatasAsync(int page, int take);
     }
 }

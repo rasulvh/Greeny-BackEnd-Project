@@ -16,5 +16,7 @@ namespace ServiceLayer.Services.Interfaces
         Task DeleteAsync(int id);
         Task<Brand> GetByIdAsync(int id);
         Task EditAsync(int categoryId, BrandEditVM request);
+        Task<List<Brand>> GetPaginatedDatasAsync(int page, int take);
+        Task<int> GetCountAsync();
     }
 }

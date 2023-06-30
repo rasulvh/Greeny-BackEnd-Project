@@ -27,6 +27,11 @@ namespace RepositoryLayer.Data
         public DbSet<Wishlist> Wishlists { get; set; }
         public DbSet<ProductBasket> ProductBaskets { get; set; }
         public DbSet<ProductWishlist> ProductWishlists { get; set; }
+        public DbSet<Blog> Blogs { get; set; }
+        public DbSet<City> Cities { get; set; }
+        public DbSet<Contact> Contacts { get; set; }
+        public DbSet<Reason> Reasons { get; set; }
+        public DbSet<Team> Teams { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

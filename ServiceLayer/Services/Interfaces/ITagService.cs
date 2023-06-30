@@ -1,14 +1,15 @@
 ﻿using DomainLayer.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using ServiceLayer.ViewModels.Admin.Tags;
 
 namespace ServiceLayer.Services.Interfaces
 {
     public interface ITagService
     {
         Task<IEnumerable<Tag>> GetAllAsync();
+        Task<IEnumerable<Tag>> GetAllWithIncludesAsync();
+        Task<Tag> GetByIdAsync(int id);
+        Task EditAsync(int id, TagEditVM request);
+        Task DeleteAsync(int id);
+        Task CreateAsync(TagCreateVM request);
     }
 }

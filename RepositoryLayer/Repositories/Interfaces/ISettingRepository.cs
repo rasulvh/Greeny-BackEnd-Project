@@ -10,5 +10,6 @@ namespace RepositoryLayer.Repositories.Interfaces
     public interface ISettingRepository : IRepository<Setting>
     {
         Dictionary<string, string> GetAllDatas();
+        List<Setting> GetAllWithIdsDatas();
     }
 }

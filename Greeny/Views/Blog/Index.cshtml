@@ -1,0 +1,196 @@
+﻿@model BlogVM
+@{
+    ViewData["Title"] = "Index";
+}
+
+<section class="inner-section single-banner" style="background: url(images/single-banner.jpg) no-repeat center;">
+    <div class="container">
+        <h2>blog</h2>
+    </div>
+</section>
+
+<section class="inner-section blog-grid">
+    <div class="container">
+        <div class="row justify-content-center">
+
+
+            <div class="col-lg-8">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="top-filter">
+                            <div class="filter-show">
+                                <label class="filter-label">Show :</label><select class="form-select filter-select">
+                                    <option value="1">12</option>
+                                    <option value="2">24</option>
+                                    <option value="3">36</option>
+                                </select>
+                            </div>
+                            <div class="filter-short">
+                                <label class="filter-label">Short by :</label><select class="form-select filter-select">
+                                    <option selected>default</option>
+                                    <option value="3">recent</option>
+                                    <option value="1">featured</option>
+                                    <option value="2">recommend</option>
+                                </select>
+                            </div>
+                            <div class="filter-action">
+                                <a href="blog-grid.html" class="active" title="Two Column">
+                                    <i class="fas fa-th-large"></i>
+                                </a><a href="#" title="One Column"><i class="fas fa-th-list"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    @if(Model.SearchedBlogs == null)
+                    {
+                        @foreach (var item in Model.PaginateResult.Datas)
+                        {
+                            <div class="col-md-6 col-lg-6">
+                                <div class="blog-card">
+                                    <div class="blog-media">
+                                        <a class="blog-img" href="#">
+                                            <img src="~/images/blog/@item.Image" alt="blog">
+                                        </a>
+                                    </div>
+                                    <div class="blog-content">
+                                        <ul class="blog-meta">
+                                            <li><i class="fas fa-user"></i><span>admin</span></li>
+                                            <li><i class="fas fa-calendar-alt"></i><span>@item.CreateDate.ToString("MMMM dd, yyyy").ToUpper()</span></li>
+                                        </ul>
+                                        <h4 class="blog-title">
+                                            <a href="#">@item.Title</a>
+                                        </h4>
+                                        <p class="blog-desc">@item.Text</p>
+                                        <a class="blog-btn" href="#"><span>read more</span><i class="icofont-arrow-right"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    }
+                    else
+                    {
+                        @foreach (var item in Model.SearchedBlogs)
+                        {
+                            <div class="col-md-6 col-lg-6">
+                                <div class="blog-card">
+                                    <div class="blog-media">
+                                        <a class="blog-img" href="#">
+                                            <img src="~/images/blog/@item.Image" alt="blog">
+                                        </a>
+                                    </div>
+                                    <div class="blog-content">
+                                        <ul class="blog-meta">
+                                            <li><i class="fas fa-user"></i><span>admin</span></li>
+                                            <li><i class="fas fa-calendar-alt"></i><span>@item.CreateDate.ToString("MMMM dd, yyyy").ToUpper()</span></li>
+                                        </ul>
+                                        <h4 class="blog-title">
+                                            <a href="#">@item.Title</a>
+                                        </h4>
+                                        <p class="blog-desc">@item.Text</p>
+                                        <a class="blog-btn" href="#"><span>read more</span><i class="icofont-arrow-right"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    }
+                </div>
+
+                @if(Model.SearchedBlogs == null)
+                {
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="bottom-paginate">
+                                <p class="page-info">Showing @Model.PaginateResult.Datas.Count of @Model.BlogCount Results</p>
+                                <ul class="pagination">
+                                    <li class="page-item @(Model.PaginateResult.HasPrevious ? "" : "disabled")">
+                                        <a class="page-link" asp-route-page="@(Model.PaginateResult.CurrentPage-1)"><i class="fas fa-long-arrow-alt-left"></i></a>
+                                    </li>
+                                    @for (int i = 1; i <= Model.PaginateResult.TotalPage; i++)
+                                    {
+                                        <li class="page-item @(Model.PaginateResult.CurrentPage == i ? "disabled" : "")"><a class="page-link" asp-route-page="@i">@i</a></li>
+                                    }
+                                    <li class="page-item @(Model.PaginateResult.HasNext ? "" : "disabled")">
+                                        <a class="page-link" asp-route-page="@(Model.PaginateResult.CurrentPage+1)"><i class="fas fa-long-arrow-alt-right"></i></a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+
+            <div class="col-md-7 col-lg-4">
+                <div class="blog-widget">
+                    <h3 class="blog-widget-title">Find blogs</h3>
+                    @using (Html.BeginForm("Index", "Blog", FormMethod.Post, new { @class = "blog-widget-form" }))
+                    {
+                        <input type="text" placeholder="Search blogs" name="searchText" id="searchText">
+                        <button class="icofont-search-1" type="submit"></button>
+                    }
+                </div>
+
+                <div class="blog-widget">
+                    <h3 class="blog-widget-title">new blogs</h3>
+                    <ul class="blog-widget-feed">
+                        @foreach(var item in Model.LastUploadedBlogs)
+                        {
+                            <li>
+                                <a class="blog-widget-media" href="#">
+                                    <img src="~/images/blog/@item.Image" alt="blog-widget">
+                                </a>
+                                <h6 class="blog-widget-text">
+                                    <a href="#">@item.Title</a><span>@item.CreateDate.ToString("MMMM dd, yyyy").ToUpper()</span>
+                                </h6>
+                            </li>
+                        }
+                    </ul>
+                </div>
+
+                <div class="blog-widget">
+                    <h3 class="blog-widget-title">top categories</h3>
+                    <ul class="blog-widget-category">
+                        <li><a href="#">farming <span>22</span></a></li>
+                        <li><a href="#">agriculture <span>14</span></a></li>
+                        <li><a href="#">organic food <span>35</span></a></li>
+                        <li><a href="#">vegetables <span>67</span></a></li>
+                        <li><a href="#">healthy life <span>89</span></a></li>
+                    </ul>
+                </div>
+
+                <div class="blog-widget">
+                    <h3 class="blog-widget-title">popular tags</h3>
+                    <ul class="blog-widget-tag">
+                        <li><a href="#">farming</a></li>
+                        <li><a href="#">organic</a></li>
+                        <li><a href="#">food</a></li>
+                        <li><a href="#">healthy</a></li>
+                        <li><a href="#">agriculture</a></li>
+                        <li><a href="#">vegetables</a></li>
+                        <li><a href="#">grocery</a></li>
+                        <li><a href="#">vegan</a></li>
+                        <li><a href="#">life</a></li>
+                        <li><a href="#">enjoy</a></li>
+                    </ul>
+                </div>
+
+                <div class="blog-widget">
+                    <h3 class="blog-widget-title">follow us</h3>
+                    <ul class="blog-widget-social">
+                        <li><a href="#" class="icofont-facebook"></a></li>
+                        <li><a href="#" class="icofont-twitter"></a></li>
+                        <li><a href="#" class="icofont-linkedin"></a></li>
+                        <li><a href="#" class="icofont-pinterest"></a></li>
+                        <li><a href="#" class="icofont-instagram"></a></li>
+                    </ul>
+                </div>
+
+                <div class="blog-widget">
+                    <a href="#"><img class="img-fluid" src="~/images/promo/blog/01.jpg"alt="promo">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

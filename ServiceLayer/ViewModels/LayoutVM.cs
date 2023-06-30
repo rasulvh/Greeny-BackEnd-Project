@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DomainLayer.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,5 +10,6 @@ namespace ServiceLayer.ViewModels
     public class LayoutVM
     {
         public Dictionary<string, string> SettingDatas { get; set; }
+        public IEnumerable<Category> Categories { get; set; }
     }
 }

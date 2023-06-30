@@ -1,0 +1,58 @@
+﻿@model IEnumerable<Product>
+
+@foreach (var item in Model.OrderByDescending(m=>m.Id))
+{
+    <div class="col">
+        <div class="product-card">
+            <div class="product-media">
+                <div class="product-label"><label class="label-text sale">sale</label></div>
+                <button class="product-wish wish">
+                    <i class="fas fa-heart"></i>
+                </button>
+                <a class="product-image" asp-controller="Product" asp-action="Index" asp-route-id="@item.Id"><img src="images/product/@item.Images.FirstOrDefault(m=>m.IsMain).Image" alt="product"></a>
+                <div class="product-widget">
+                    <a title="Product Compare" href="#" class="fas fa-random"></a><a title="Product Video" href="https://youtu.be/9xzcVxSBbG8" class="venobox fas fa-play" data-autoplay="true" data-vbtype="video"></a><a title="Product View" href="#" class="fas fa-eye" data-bs-toggle="modal" data-bs-target="#product-view"></a>
+                </div>
+            </div>
+            <div class="product-content">
+                <div class="product-rating">
+                    @for (int i = 0; i < item.Rating.RatingCount; i++)
+                    {
+                        <i class="active icofont-star"></i>
+                    }
+                    @for (int i = 0; i < (5 - item.Rating.RatingCount); i++)
+                    {
+                        <i class="icofont-star"></i>
+                    }
+                    <a href="#">(@item.Reviews.Count)</a>
+                </div>
+                <h6 class="product-name"><a href="#">@item.Name</a></h6>
+                <h6 class="product-price">
+                    @if (item.Discount.Percent != 0)
+                    {
+                        <del>$@item.Price</del>
+
+                        <span>$@(item.Price * (100 - item.Discount.Percent) / 100)<small>/piece</small></span>
+                    }
+                    else
+                    {
+                        <span>$@item.Price<small>/piece</small></span>
+                    }
+                </h6>
+                <form id="basket-form" data-id="@item.Id">
+                    <button class="product-add" title="Add to Cart" type="submit">
+                        <i class="fas fa-shopping-basket"></i><span>add</span>
+                    </button>
+                </form>
+                <div class="product-action">
+                    <button class="action-minus" title="Quantity Minus">
+                        <i class="icofont-minus"></i>
+                    </button><input class="action-input" title="Quantity Number" type="text" name="quantity" value="1"><button class="action-plus" title="Quantity Plus">
+                        <i class="icofont-plus"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+

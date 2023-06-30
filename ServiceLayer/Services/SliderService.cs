@@ -1,18 +1,26 @@
 ﻿using DomainLayer.Models;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
+using RepositoryLayer.Repositories;
 using RepositoryLayer.Repositories.Interfaces;
+using ServiceLayer.Helpers;
 using ServiceLayer.Services.Interfaces;
 using ServiceLayer.ViewModels;
+using ServiceLayer.ViewModels.Admin.Category;
+using ServiceLayer.ViewModels.Admin.Slider;
 
 namespace ServiceLayer.Services
 {
     public class SliderService : ISliderService
     {
         private readonly ISliderRepository _sliderRepository;
+        private readonly IWebHostEnvironment _env;
 
-        public SliderService(ISliderRepository sliderRepository)
+        public SliderService(ISliderRepository sliderRepository,
+                             IWebHostEnvironment env)
         {
             _sliderRepository = sliderRepository;
+            _env = env;
         }
 
         public async Task<List<SliderVM>> GetAllAsync()
@@ -62,6 +70,54 @@ namespace ServiceLayer.Services
         {
             var sliders = await _sliderRepository.GetAllAsync();
             return sliders.Where(m => m.Status).Count();
+        }
+
+        public async Task CreateAsync(SliderCreateVM request)
+        {
+            string fileName = Guid.NewGuid().ToString() + "_" + request.Image.FileName;
+
+            await request.Image.SaveFileAsync(fileName, _env.WebRootPath, "images/home/index/");
+
+            Slider slider = new()
+            {
+                Title = request.Title,
+                Description = request.Description,
+                Image = fileName,
+                Status = true
+            };
+
+            await _sliderRepository.CreateAsync(slider);
+        }
+
+        public async Task DeleteAsync(int id)
+        {
+            Slider slider = await GetByIdAsync(id);
+
+            await _sliderRepository.DeleteAsync(slider);
+
+            string path = Path.Combine(_env.WebRootPath, "images/home/index/", slider.Image);
+
+            if (File.Exists(path))
+            {
+                File.Delete(path);
+            }
+        }
+
+        public async Task EditAsync(int sliderId, SliderEditVM request)
+        {
+            var slider = await _sliderRepository.GetByIdAsync(sliderId);
+
+            if (request.NewImage != null)
+            {
+                string fileName = Guid.NewGuid().ToString() + "_" + request.NewImage.FileName;
+                slider.Image = fileName;
+                await request.NewImage.SaveFileAsync(fileName, _env.WebRootPath, "images/home/index");
+            }
+
+            slider.Title = request.Title;
+            slider.Description = request.Description;
+
+            await _sliderRepository.UpdateAsync(slider);
         }
     }
 }
