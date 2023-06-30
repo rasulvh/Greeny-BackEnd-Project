@@ -42,6 +42,8 @@ builder.Services.AddSession(option =>
     option.IdleTimeout = TimeSpan.FromMinutes(15);
 });
 
+//Scope
+
 //Repositories
 builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 builder.Services.AddScoped<ILayoutService, LayoutService>();
