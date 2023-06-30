@@ -22,7 +22,7 @@ namespace Greeny.Controllers
         {
             List<ProductShopPageVM> list = new();
 
-            var products = await _productService.GetAllWithIncludesAsync();
+            var products = await _productService.GetAllWithSomeIncludesAsync();
             var categories = await _categoryService.GetAllWithIncludesAsync();
 
             if (searchText != null)
